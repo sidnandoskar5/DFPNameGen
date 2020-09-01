@@ -14,7 +14,7 @@ var app = function(){
         return html;
     }
     return {
-        pages : ['HomePage','BlogCategory','BlogListing','ArticlePage','LocalListings','TagPage','ProductCategory','ProductDetails','ListingDetails','SERPPage'],
+        pages : ['HomePage','SERP','Product-Details-Category','Blog-Article-List-Category','Local-Listings-Details','Other'],
         sizes: ['300x250','728x90','300x600'],
         init: function(){
             var html = "";
