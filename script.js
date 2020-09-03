@@ -49,6 +49,7 @@ var app = function(){
         genDFPIds: function(){
             var idPrefix = 'div-gpt-ad-';
             var inputids = document.querySelector('#get-dfp-ids').value;
+            if(inputids == "") return;
             var data = inputids.replace(/\r\n/g,"\n").split("\n");
             var newIds = "";
             data.forEach(id => {
