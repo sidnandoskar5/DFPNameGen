@@ -69,4 +69,4 @@ app.init();
 //     document.querySelector("#id-gen").style.display  = "block";
 // });
 document.querySelector("#btn-submit").addEventListener("click", app.genDFPNames);
-document.querySelector("#btn-id-submit").addEventListener("click", app.genDFPIds);
+// document.querySelector("#btn-id-submit").addEventListener("click", app.genDFPIds);
