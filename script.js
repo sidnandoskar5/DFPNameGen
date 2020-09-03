@@ -60,13 +60,13 @@ var app = function(){
     }
 }();
 app.init();
-document.querySelector("#name-gen-btn").addEventListener("click", function(){
-    document.querySelector("#name-gen").style.display  = "block";
-    document.querySelector("#id-gen").style.display  = "none";
-});
+// document.querySelector("#name-gen-btn").addEventListener("click", function(){
+//     document.querySelector("#name-gen").style.display  = "block";
+//     document.querySelector("#id-gen").style.display  = "none";
+// });
 // document.querySelector("#id-gen-btn").addEventListener("click", function(){
 //     document.querySelector("#name-gen").style.display  = "none";
 //     document.querySelector("#id-gen").style.display  = "block";
 // });
-// document.querySelector("#btn-submit").addEventListener("click", app.genDFPNames);
-// document.querySelector("#btn-id-submit").addEventListener("click", app.genDFPIds);
+document.querySelector("#btn-submit").addEventListener("click", app.genDFPNames);
+document.querySelector("#btn-id-submit").addEventListener("click", app.genDFPIds);
