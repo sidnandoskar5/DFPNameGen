@@ -1,5 +1,4 @@
 var app = function(){
-    var siteName = document.querySelector("#site-name").value;
     var generateHTML = function(page){
         var html = '<div class="col-wrap" id="dfp_'+page+'">';
         html += '<div class="col">';
@@ -14,6 +13,7 @@ var app = function(){
         return html;
     }
     return {
+        account: '/45361917/',
         pages : ['HomePage','SERP','Product-Details-Category','Blog-Article-List-Category','Local-Listings-Details','Other'],
         sizes: ['300x250','728x90','300x600'],
         init: function(){
@@ -39,13 +39,33 @@ var app = function(){
                 var inputDetails = input.getAttribute("data-details");
                 if(inputVal != ''){
                     for(var i=1;i<=parseInt(inputVal);i++){
-                        names+= siteName+'-'+inputDetails+'-'+i+'\r\n';
+                        names+= app.account + siteName + '-' + inputDetails + '-' + i + '\r\n';
                     }
                 }
             });
             document.querySelector("#dfp-name-view").value = names;
+        },
+        
+        genDFPIds: function(){
+            var idPrefix = 'div-gpt-ad-';
+            var inputids = document.querySelector('#get-dfp-ids').value;
+            var data = inputids.replace(/\r\n/g,"\n").split("\n");
+            var newIds = "";
+            data.forEach(id => {
+                newIds+= idPrefix+id+'-0'+'\r\n';
+            });
+            document.querySelector("#set-dfp-ids").value = newIds;
         }
     }
 }();
 app.init();
+document.querySelector("#name-gen-btn").addEventListener("click", function(){
+    document.querySelector("#name-gen").style.display  = "block";
+    document.querySelector("#id-gen").style.display  = "none";
+});
+document.querySelector("#id-gen-btn").addEventListener("click", function(){
+    document.querySelector("#name-gen").style.display  = "none";
+    document.querySelector("#id-gen").style.display  = "block";
+});
 document.querySelector("#btn-submit").addEventListener("click", app.genDFPNames);
+document.querySelector("#btn-id-submit").addEventListener("click", app.genDFPIds);

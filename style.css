@@ -8,7 +8,11 @@ body{font-family:sans-serif}
 .col-wrap{display:flex;flex-wrap: wrap;justify-content:space-between;margin-bottom:15px}
 .col-wrap .col{width:25%;padding:0 15px}
 input{width:100%;height:30px;padding:0 15px}
-.btn-submit{height:30px;padding:0 10px;margin-bottom:15px}
+.btn{height:30px;padding:0 10px;margin-bottom:15px}
 textarea{width:100%;height:250px;resize:none;padding:10px}
 .note{margin-bottom:30px}
 .note li{margin-bottom: 10px;}
+
+.dfp-id-maker{display:none}
+.dfp-id-maker .col-wrap .col{width:50%}
+.dfp-id-maker .btn-submit-wrap{text-align:center;margin:15px 0;width:100%}
