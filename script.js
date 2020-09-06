@@ -6,12 +6,22 @@ var app = function(){
         html += '</div>';
         app.sizes.forEach(size => {
             html += '<div class="col">';
-            html += '<input type="number" min="0" data-details="'+page+'-'+size+'" placeholder="'+size+'" />';
+            html += '<input class="dfp-count" type="number" min="0" data-details="'+page+'-'+size+'" placeholder="'+size+'" />';
             html += '</div>';
         });
         html += '</div>';
         return html;
     }
+    
+    var generateResultHTML = function(data){
+        var html = "";
+        data.forEach(res => {
+            html += '<div class="col"><input class="txt-copy" value="'+res.path+'" readonly>' + '</div>';
+            html += '<div class="col"><input class="txt-copy" value="'+res.id+'" readonly>' + '</div>';
+        })
+        return html;
+    }
+
     return {
         account: '/45361917/',
         pages : ['HomePage','SERP','Product-Details-Category','Blog-Article-List-Category','Local-Listings-Details','Other'],
@@ -25,9 +35,9 @@ var app = function(){
             document.querySelector('#dfp-wrap').innerHTML = html;
         },
         genDFPNames : function(){
-            var names = '';
+            var data = [];
             var siteName = document.querySelector("#site-name").value;
-            var inputs = document.querySelectorAll("input");
+            var inputs = document.querySelectorAll(".dfp-count");
             
             if(siteName === ''){
                 alert("Enter Site Name");
@@ -37,13 +47,16 @@ var app = function(){
             inputs.forEach(input => {
                 var inputVal = input.value;
                 var inputDetails = input.getAttribute("data-details");
-                if(inputVal != ''){
+                if(inputVal.length !=0 ){
                     for(var i=1;i<=parseInt(inputVal);i++){
-                        names+= app.account + siteName + '-' + inputDetails + '-' + i + '\r\n';
+                        path= app.account + siteName + '-onodfp' + '/' + inputDetails + '-' + i;
+                        id= 'div-gpt-ad-'+ inputDetails.toLowerCase() + '-'+ i;
+                        data.push({path:path,id:id});
                     }
                 }
             });
-            document.querySelector("#dfp-name-view").value = names;
+            document.querySelector("#results").innerHTML = generateResultHTML(data);
+            app.addCopyEvent();
         },
         
         genDFPIds: function(){
@@ -56,17 +69,28 @@ var app = function(){
                 newIds+= idPrefix+id+'-0'+'\r\n';
             });
             document.querySelector("#set-dfp-ids").value = newIds;
+        },
+
+        addCopyEvent: function(){
+            document.querySelectorAll(".txt-copy").forEach(input => {
+                input.addEventListener("click", app.copyToClipboard);
+            })
+        },
+
+        copyToClipboard: function(){
+            this.select();
+            this.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            this.classList.add('copied');
+            app.msg("Copied the text: " + this.value);
+        },
+
+        msg: function($msg){
+            document.querySelector(".alert").innerHTML = $msg;
+            document.querySelector(".alert").classList.add('show');
+            setTimeout(() => { document.querySelector(".alert").classList.remove('show'); }, 10000);
         }
     }
 }();
 app.init();
-// document.querySelector("#name-gen-btn").addEventListener("click", function(){
-//     document.querySelector("#name-gen").style.display  = "block";
-//     document.querySelector("#id-gen").style.display  = "none";
-// });
-// document.querySelector("#id-gen-btn").addEventListener("click", function(){
-//     document.querySelector("#name-gen").style.display  = "none";
-//     document.querySelector("#id-gen").style.display  = "block";
-// });
 document.querySelector("#btn-submit").addEventListener("click", app.genDFPNames);
-// document.querySelector("#btn-id-submit").addEventListener("click", app.genDFPIds);
