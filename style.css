@@ -9,7 +9,7 @@ body{font-family:sans-serif;font-size:14px}
 .col-wrap{display:flex;flex-wrap: wrap;justify-content:space-between;align-items:center;margin:0 -15px 15px}
 .col-wrap .col{width:25%;padding:0 15px}
 input{width:100%;height:30px;padding:0 15px}
-.btn{height:30px;padding:0 10px;margin-bottom:15px}
+.btn{height:30px;padding:0 10px;margin-bottom:15px;cursor:pointer}
 textarea{width:100%;height:250px;resize:none;padding:10px}
 .note{margin-bottom:20px}
 .note ul{padding-left:17px}
@@ -17,13 +17,9 @@ textarea{width:100%;height:250px;resize:none;padding:10px}
 
 .result-table .row{display:flex;flex-wrap: wrap;justify-content:space-between;line-height:20px}
 .result-table .head{font-weight:700}
-.result-table .col{width:50%;border:1px solid #333;padding:8px 10px;align-items:center}
+.result-table .col{width:33.33%;border:1px solid #333;padding:8px 10px;align-items:center;margin-bottom:1px}
 .result-table .txt-copy{cursor:pointer}
 .result-table .txt-copy.copied{color:#fff;background-color:#efa3a3}
 
 .alert{position:fixed;right:0;top:10px;background-color:#333;color:#fff;padding:10px;transition:all 0.4s;opacity:0}
 .alert.show{opacity:0.8}
-
-.dfp-id-maker{display:none}
-.dfp-id-maker .col-wrap .col{width:50%}
-.dfp-id-maker .btn-submit-wrap{text-align:center;margin:15px 0;width:100%}

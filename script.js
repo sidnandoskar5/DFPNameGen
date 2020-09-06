@@ -6,7 +6,7 @@ var app = function(){
         html += '</div>';
         app.sizes.forEach(size => {
             html += '<div class="col">';
-            html += '<input class="dfp-count" type="number" min="0" data-details="'+page+'-'+size+'" placeholder="'+size+'" />';
+            html += '<input class="dfp-count" type="number" min="0" data-page="'+page+'" data-size="'+size+'" placeholder="'+size+'" />';
             html += '</div>';
         });
         html += '</div>';
@@ -16,6 +16,7 @@ var app = function(){
     var generateResultHTML = function(data){
         var html = "";
         data.forEach(res => {
+            html += '<div class="col">' + res.page + '</div>';
             html += '<div class="col"><input class="txt-copy" value="'+res.path+'" readonly>' + '</div>';
             html += '<div class="col"><input class="txt-copy" value="'+res.id+'" readonly>' + '</div>';
         })
@@ -46,12 +47,14 @@ var app = function(){
 
             inputs.forEach(input => {
                 var inputVal = input.value;
-                var inputDetails = input.getAttribute("data-details");
+                var size = input.getAttribute("data-size");
+                var page = input.getAttribute("data-page");
                 if(inputVal.length !=0 ){
                     for(var i=1;i<=parseInt(inputVal);i++){
-                        path= app.account + siteName + '-onodfp' + '/' + inputDetails + '-' + i;
-                        id= 'div-gpt-ad-'+ inputDetails.toLowerCase() + '-'+ i;
-                        data.push({path:path,id:id});
+                        var path = app.account + siteName + '-onodfp' + '/' + page + '-' + size + '-' + i;
+                        var id = 'div-gpt-ad-'+ page + '-' + size.toLowerCase() + '-'+ i;
+                        var pageName = page + " (" + size + ") - " + i;
+                        data.push({page:pageName,path:path,id:id});
                     }
                 }
             });
