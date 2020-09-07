@@ -51,7 +51,7 @@ var app = function(){
                 var page = input.getAttribute("data-page");
                 if(inputVal.length !=0 ){
                     for(var i=1;i<=parseInt(inputVal);i++){
-                        var path = app.account + siteName + '-onodfp' + '/' + page + '-' + size + '-' + i;
+                        var path = app.account + siteName.toLowerCase() + '-onodfp' + '/' + page + '-' + size + '-' + i;
                         var id = 'div-gpt-ad-'+ page + '-' + size + '-'+ i;
                         var pageName = page + " (" + size + ") - " + i;
                         data.push({page:pageName,path:path,id:id.toLowerCase()});
